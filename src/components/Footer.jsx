@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import { useDarkMode } from '../components/DarkModeContext';
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube, FaBuilding, FaMobile, FaMailBulk } from 'react-icons/fa';
-import AOS from 'aos';  // Import AOS
+import AOS from 'aos'; // Import AOS
 import 'aos/dist/aos.css'; // Import AOS styles
 
 const Footer = () => {
@@ -15,10 +14,8 @@ const Footer = () => {
     });
   }, []);
 
-  const { darkMode, toggleDarkMode } = useDarkMode();
-
   return (
-    <div className={`${darkMode ? 'dark' : 'light'} bg-[rgb(10,10,74)] py-10`}> {/* Navy Blue background */}
+    <div className="bg-[rgb(10,10,74)] py-10"> {/* Navy Blue background */}
       <section className="flex flex-col lg:flex-row justify-between items-center lg:px-36 px-6">
         <div className="flex flex-col gap-6">
           <h1 className="text-3xl font-semibold text-white">About Us</h1>
@@ -63,6 +60,6 @@ const Footer = () => {
       </footer>
     </div>
   );
-}
+};
 
 export default Footer;

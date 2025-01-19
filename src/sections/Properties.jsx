@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useDarkMode } from '../components/DarkModeContext';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { property } from '../components/export';
@@ -10,7 +9,6 @@ const Properties = () => {
   const [iconColors, setIconColors] = useState({});
   const [bedColors, setBedColors] = useState({});
   const [bathColors, setBathColors] = useState({});
-  const { darkMode } = useDarkMode();
 
   useEffect(() => {
     AOS.init({
@@ -56,15 +54,15 @@ const Properties = () => {
   );
 
   return (
-    <div className={`${darkMode ? 'dark bg-black' : 'light bg-transparent'}`}>
+    <div className="light bg-transparent">
       <section
         id="properties"
         className="lg:w-[90%] m-auto lg:px-20 px-6 py-20 w-full flex flex-col justify-center items-start gap-10"
       >
         {/* Section Heading */}
         <div className="flex flex-col justify-center items-start gap-4">
-          <h1 data-aos="zoom-in" className="text-red-500 dark:text-white">PROPERTIES</h1>
-          <h1 data-aos="zoom-in" className="text-black text-4xl font-semibold dark:text-white">
+          <h1 data-aos="zoom-in" className="text-red-500">PROPERTIES</h1>
+          <h1 data-aos="zoom-in" className="text-black text-4xl font-semibold">
             Explore the latest
           </h1>
         </div>
@@ -77,9 +75,9 @@ const Properties = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by name, location or description"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg dark:bg-gray-700 dark:text-white dark:border-gray-600"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg"
             />
-            <FaSearch className="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-500 dark:text-white" />
+            <FaSearch className="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-500" />
           </div>
         </div>
 
@@ -94,7 +92,7 @@ const Properties = () => {
                 data-aos="zoom-in"
                 data-aos-delay={`${200 + index * 100}`}
                 key={index}
-                className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden w-full shadow-lg relative"
+                className="bg-white rounded-xl overflow-hidden w-full shadow-lg relative"
               >
                 {/* Image Box */}
                 <div
@@ -122,12 +120,12 @@ const Properties = () => {
 
                 {/* Property Name and Short Description */}
                 <div className="p-4 text-center">
-                  <h2 className="text-lg font-semibold dark:text-white">{item.name}</h2>
-                  <p className="text-gray-500 dark:text-gray-300 mt-2">{item.description}</p>
+                  <h2 className="text-lg font-semibold">{item.name}</h2>
+                  <p className="text-gray-500 mt-2">{item.description}</p>
                 </div>
 
                 {/* Property Info */}
-                <div className="p-4 border-t dark:border-gray-700">
+                <div className="p-4 border-t">
                   <div className="flex justify-between items-center">
                     <div className="flex gap-2 items-center">
                       <FaBed
@@ -142,17 +140,17 @@ const Properties = () => {
                         onClick={() => toggleBathColor(item.id)}
                       />
                       <span>{item.bathrooms || 2} Baths</span>
-                      <span className="text-gray-500 dark:text-gray-300">|</span>
+                      <span className="text-gray-500">|</span>
                       <span>{item.squareFootage || 340} sq ft</span>
                     </div>
-                    <span className="text-red-500 dark:text-red-400 font-bold">
+                    <span className="text-red-500 font-bold">
                       {item.price || '340,000'}
                     </span>
                   </div>
                 </div>
 
                 {/* Description Text */}
-                <div className="p-4 text-center text-gray-500 dark:text-gray-300">
+                <div className="p-4 text-center text-gray-500">
                   Beautiful, updated, ground level Co-op apartment in the disable Bay Terrace neighborhood
                 </div>
 
@@ -164,7 +162,7 @@ const Properties = () => {
                       style={{ color: bedColors[item.id] || 'black' }}
                       onClick={() => toggleBedColor(item.id)}
                     />
-                    <span className="text-gray-500 dark:text-gray-300 text-sm">
+                    <span className="text-gray-500 text-sm">
                       {['Alisha', 'John', 'David', 'Sophia', 'Emma'][index % 5]}
                     </span>
                   </div>
@@ -193,13 +191,13 @@ const Properties = () => {
                 {/* View Button */}
                 <div className="p-4 text-center">
                   <button className="bg-blue-500 text-white px-4 py-1 rounded">
-                    View 
+                    View
                   </button>
                 </div>
               </div>
             ))
           ) : (
-            <div className="w-full text-center text-gray-500 dark:text-gray-300">
+            <div className="w-full text-center text-gray-500">
               No properties found matching your search.
             </div>
           )}

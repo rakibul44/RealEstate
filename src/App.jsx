@@ -1,7 +1,5 @@
 import React from 'react';
-
-import Header from './components/Header';
-import Hero from './sections/Hero';
+import Navbar from './components/Navbar';
 import  About from './sections/About';
 import PopularAreas from './sections/PopularAreas';
 import Properties from './sections/Properties';
@@ -9,16 +7,15 @@ import Services  from './sections/Services';
 import Clients from './sections/Clients';
 import Contact from './sections/Contact';
 import Footer from './components/Footer';
-import {DarkModeProvider} from './components/DarkModeContext'
-import 'aos/dist/aos.css';
+import 'aos/dist/aos.css'; //animation css 
+import Slider from './sections/Slider';
 
 const App = () => {
   return (
     <div>
-  
-<DarkModeProvider>
-<Header/>
-      <Hero/>
+      
+      <Navbar />
+      <Slider />
       <About/>
       <PopularAreas/>
       <Properties/>
@@ -26,11 +23,6 @@ const App = () => {
       <Clients/>
       <Contact/>
       <Footer/>
-    
-</DarkModeProvider>
-      
-      
-      
       
     </div>
   )

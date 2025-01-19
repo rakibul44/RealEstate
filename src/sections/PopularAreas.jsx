@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'; // Import useEffect
-import { useDarkMode } from '../components/DarkModeContext';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS styles
 import area1 from '../assets/images/area1.jpg';
