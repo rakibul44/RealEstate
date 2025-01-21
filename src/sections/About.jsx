@@ -29,7 +29,7 @@ const About = () => {
   };
 
   return (
-    <section className="w-[95%] m-auto py-20 bg-white text-black" data-aos="fade-up">
+    <section className="w-[95%] m-auto py-20 text-black" data-aos="fade-up">
       <div className="container mx-auto flex flex-col lg:flex-row items-center gap-10">
         {/* About Image */}
         <div data-aos="fade-right" className="lg:w-1/2 w-full flex justify-center">

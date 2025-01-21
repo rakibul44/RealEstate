@@ -1,11 +1,42 @@
-import React, { useEffect } from 'react'; // Import useEffect
+import React, { useState, useEffect } from 'react';
 import AOS from 'aos';
-import 'aos/dist/aos.css'; // Import AOS styles
+import 'aos/dist/aos.css';
 import area1 from '../assets/images/area1.jpg';
 import area2 from '../assets/images/area2.jpg';
 import area3 from '../assets/images/area3.jpg';
 
+const cardData = [
+  {
+    img: area1,
+    title: 'Area 1',
+    description: 'Explore the vibrant community and local amenities in Area 1.',
+    rating: '⭐⭐⭐⭐☆ (4.5/5)',
+  },
+  {
+    img: area2,
+    title: 'Area 2',
+    description: 'A peaceful and family-friendly area with top-notch facilities.',
+    rating: '⭐⭐⭐⭐☆ (4.7/5)',
+  },
+  {
+    img: area3,
+    title: 'Area 3',
+    description: 'A dynamic and urban area perfect for work and leisure.',
+    rating: '⭐⭐⭐⭐☆ (4.6/5)',
+  },
+  {
+    img: area3,
+    title: 'Area 3',
+    description: 'A dynamic and urban area perfect for work and leisure.',
+    rating: '⭐⭐⭐⭐☆ (4.6/5)',
+  },
+  // Add more cards as needed
+];
+
 const PopularAreas = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const cardsToShow = 3; // Number of cards to show at once
+
   useEffect(() => {
     AOS.init({
       offset: 200,
@@ -14,88 +45,50 @@ const PopularAreas = () => {
       delay: 100,
     });
 
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % Math.ceil(cardData.length / cardsToShow));
+    }, 3000); // Change slides every 3 seconds
+
     return () => {
-      AOS.refresh(); // Ensures animations are applied on updates
+      clearInterval(interval);
+      AOS.refresh();
     };
   }, []);
 
   return (
-    <div className="w-full py-12 bg-pink-100">
+    <div className="w-full py-12 bg-white">
       <h1 className="text-4xl font-semibold text-center mb-10 text-gray-800">Popular Areas</h1>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
-        {/* Area 1 */}
-        <div
-          data-aos="fade-up"
-          data-aos-delay="100"  // Stagger the delay for each area
-          className="flex flex-col lg:flex-row items-center rounded-lg overflow-hidden shadow-lg bg-white p-4"
-        >
-          <div className="lg:w-1/2">
-            <img
-              src={area1}
-              alt="Area 1"
-              className="w-full h-[250px] object-cover rounded-lg"
-            />
-          </div>
-          <div className="lg:w-1/2 lg:pl-8 mt-4 lg:mt-0">
-            <h2 className="text-2xl font-semibold text-gray-800">Area 1</h2>
-            <p className="text-sm text-gray-600 mt-2">
-              Explore the vibrant community and local amenities in Area 1.
-            </p>
-            <div className="mt-4 text-gray-700">
-              <p>⭐⭐⭐⭐☆ (4.5/5)</p>
-              <p className="text-pink-600 font-semibold">Explore Now</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Area 2 */}
-        <div
-          data-aos="fade-up"
-          data-aos-delay="300"  // Adjusted delay for the second area
-          className="flex flex-col lg:flex-row items-center rounded-lg overflow-hidden shadow-lg bg-white p-4"
-        >
-          <div className="lg:w-1/2">
-            <img
-              src={area2}
-              alt="Area 2"
-              className="w-full h-[250px] object-cover rounded-lg"
-            />
-          </div>
-          <div className="lg:w-1/2 lg:pl-8 mt-4 lg:mt-0">
-            <h2 className="text-2xl font-semibold text-gray-800">Area 2</h2>
-            <p className="text-sm text-gray-600 mt-2">
-              A peaceful and family-friendly area with top-notch facilities.
-            </p>
-            <div className="mt-4 text-gray-700">
-              <p>⭐⭐⭐⭐☆ (4.7/5)</p>
-              <p className="text-pink-600 font-semibold">Explore Now</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Area 3 */}
-        <div
-          data-aos="fade-up"
-          data-aos-delay="500"  // Adjusted delay for the third area
-          className="flex flex-col lg:flex-row items-center rounded-lg overflow-hidden shadow-lg bg-white p-4"
-        >
-          <div className="lg:w-1/2">
-            <img
-              src={area3}
-              alt="Area 3"
-              className="w-full h-[250px] object-cover rounded-lg"
-            />
-          </div>
-          <div className="lg:w-1/2 lg:pl-8 mt-4 lg:mt-0">
-            <h2 className="text-2xl font-semibold text-gray-800">Area 3</h2>
-            <p className="text-sm text-gray-600 mt-2">
-              A dynamic and urban area perfect for work and leisure.
-            </p>
-            <div className="mt-4 text-gray-700">
-              <p>⭐⭐⭐⭐☆ (4.6/5)</p>
-              <p className="text-pink-600 font-semibold">Explore Now</p>
-            </div>
+      
+      <div className="relative w-full flex justify-center items-center">
+        <div className="w-full overflow-hidden">
+          <div
+            className="flex transition-transform duration-500"
+            style={{ transform: `translateX(-${currentIndex * (100 / cardsToShow)}%)` }}
+          >
+            {cardData.map((card, index) => (
+              <div
+                key={index}
+                className="w-1/3 flex-shrink-0 px-2" // Adjust width for 3 cards
+              >
+                <div className="flex flex-col text-center items-center rounded-lg overflow-hidden bg-blue-100 p-3">
+                  <div className="w-full">
+                    <img
+                      src={card.img}
+                      alt={card.title}
+                      className="w-full h-[250px] object-cover rounded-lg"
+                    />
+                  </div>
+                  <div className="mt-4">
+                    <h2 className="text-2xl font-semibold text-gray-800">{card.title}</h2>
+                    <p className="text-sm text-gray-600 mt-2">{card.description}</p>
+                    <div className="mt-4 text-gray-700">
+                      <p>{card.rating}</p>
+                      <p className="text-pink-600 font-semibold">Explore Now</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

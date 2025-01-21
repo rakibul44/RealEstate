@@ -14,7 +14,7 @@ const Services = () => {
   }, []);
 
   return (
-    <div className="light bg-transparent pb-20">
+    <div className="light bg-transparent pb-2">
       <section
         id="service"
         className="light bg-slate-100 lg:w-[95%] w-full h-fit m-auto rounded-xl flex flex-col justify-center items-start lg:px-20 px-6 py-20 gap-20"

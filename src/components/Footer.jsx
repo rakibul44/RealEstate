@@ -15,7 +15,7 @@ const Footer = () => {
   }, []);
 
   return (
-    <div className="bg-[rgb(10,10,74)] py-10"> {/* Navy Blue background */}
+    <div className="bg-[rgb(11,11,11)] py-10"> {/* Navy Blue background */}
       <section className="flex flex-col lg:flex-row justify-between items-center lg:px-36 px-6">
         <div className="flex flex-col gap-6">
           <h1 className="text-3xl font-semibold text-white">About Us</h1>

@@ -21,7 +21,7 @@ const Contact = () => {
   ];
 
   return (
-    <div className="p-20 bg-red-100">
+    <div className="p-20">
       <section
         id="contact"
         className="lg:w-full h-fit m-auto rounded-xl grid lg:grid-cols-2 grid-cols-1 justify-center items-center lg:px-36 px-6 py-20 gap-10 bg-white"
